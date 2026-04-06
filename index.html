@@ -2,159 +2,196 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Home | Premium Smart Ecosystem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NOLLY AURA | Ultra Premium Home OS</title>
     
-    <!-- Google Fonts: Inter для интерфейса и Syne для заголовков (премиальный вид) -->
+    <!-- Шрифты и Иконки -->
     <link href="https://googleapis.com" rel="stylesheet">
-    
-    <!-- Иконки и графики -->
     <script src="https://unpkg.com"></script>
     <script src="https://jsdelivr.net"></script>
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="luxury-theme">
+<body class="luxury-os">
 
-    <!-- Sidebar: Тонкий и элегантный -->
-    <aside class="sidebar glass-sidebar">
-        <div class="brand">
-            <div class="brand-logo"></div>
-            <span class="brand-name">Aura</span>
+    <!-- Глобальный фон с градиентом для глубины -->
+    <div class="bg-glow"></div>
+
+    <!-- Мобильное меню (снизу для удобства пальца) -->
+    <nav class="mobile-nav">
+        <button class="m-nav-btn active" onclick="switchPage('dashboard')"><i data-lucide="layout-grid"></i></button>
+        <button class="m-nav-btn" onclick="switchPage('climate')"><i data-lucide="droplets"></i></button>
+        <button class="m-nav-btn" onclick="switchPage('security')"><i data-lucide="video"></i></button>
+        <button class="m-nav-btn" onclick="switchPage('lighting')"><i data-lucide="waves"></i></button>
+        <button class="m-nav-btn" onclick="toggleAIChat()"><i data-lucide="message-circle"></i></button>
+    </nav>
+
+    <!-- Sidebar (Десктоп) -->
+    <aside class="sidebar glass-effect">
+        <div class="brand-zone">
+            <div class="logo-aura"></div>
+            <h2 class="brand-name">NOLLY AURA</h2>
         </div>
         
-        <nav class="main-nav">
-            <div class="nav-group">
-                <small>Обзор</small>
-                <a href="#" class="nav-link active"><i data-lucide="layout-grid"></i> <span>Панель управления</span></a>
-                <a href="#" class="nav-item"><i data-lucide="activity"></i> <span>Аналитика</span></a>
-            </div>
-            
-            <div class="nav-group">
-                <small>Управление</small>
-                <a href="#" class="nav-link"><i data-lucide="droplets"></i> <span>Климат-контроль</span></a>
-                <a href="#" class="nav-link"><i data-lucide="video"></i> <span>Безопасность</span></a>
-                <a href="#" class="nav-link"><i data-lucide="waves"></i> <span>Освещение</span></a>
-            </div>
-        </nav>
+        <div class="nav-scroll-area">
+            <nav class="side-nav">
+                <div class="nav-category">Обзор</div>
+                <a href="javascript:void(0)" class="nav-item active" onclick="switchPage('dashboard')">
+                    <i data-lucide="home"></i> <span>Главная</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="switchPage('analytics')">
+                    <i data-lucide="bar-chart-3"></i> <span>Аналитика</span>
+                </a>
 
-        <div class="sidebar-footer">
-            <button id="themeToggle" class="mode-switch">
-                <i data-lucide="moon" class="dark-icon"></i>
-                <i data-lucide="sun" class="light-icon"></i>
-            </button>
-            <div class="user-brief">
+                <div class="nav-category">Управление</div>
+                <a href="javascript:void(0)" class="nav-item" onclick="switchPage('climate')">
+                    <i data-lucide="thermometer"></i> <span>Климат</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="switchPage('security')">
+                    <i data-lucide="shield"></i> <span>Безопасность</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="switchPage('lighting')">
+                    <i data-lucide="lightbulb"></i> <span>Освещение</span>
+                </a>
+
+                <div class="nav-category">Сервисы</div>
+                <a href="javascript:void(0)" class="nav-item" onclick="handleService('taxi')">
+                    <i data-lucide="car"></i> <span>Яндекс Такси</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="handleService('food')">
+                    <i data-lucide="shopping-cart"></i> <span>Доставка еды</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="handleService('fun')">
+                    <i data-lucide="map"></i> <span>Развлечения</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="user-profile-card">
+            <div class="avatar-wrapper">
                 <img src="https://ui-avatars.com" alt="User">
-                <div class="user-info">
-                    <p class="name">Александр</p>
-                    <p class="plan">Premium Access</p>
-                </div>
+                <div class="online-dot"></div>
+            </div>
+            <div class="user-meta">
+                <span class="u-name">Александр</span>
+                <span class="u-status">Premium Access</span>
             </div>
         </div>
     </aside>
 
-    <!-- Основная рабочая область -->
-    <main class="main-content">
-        
-        <!-- Шапка с поиском и уведомлениями -->
-        <header class="main-header">
-            <div class="search-bar">
+    <!-- Main Content Area -->
+    <main class="main-stage">
+        <header class="glass-header">
+            <div class="search-box">
                 <i data-lucide="search"></i>
-                <input type="text" placeholder="Поиск устройств или сценариев...">
+                <input type="text" placeholder="Поиск функций системы...">
             </div>
-            <div class="header-actions">
-                <div class="indicator">
-                    <span class="dot"></span>
-                    Система: Онлайн
+            <div class="header-tools">
+                <div class="system-status">
+                    <span class="pulse-icon"></span> Online
                 </div>
-                <button class="icon-btn notification-btn">
+                <button class="notif-pill" onclick="notif('Уведомлений пока нет')">
                     <i data-lucide="bell"></i>
-                    <span class="badge">2</span>
+                    <span class="count">2</span>
                 </button>
             </div>
         </header>
 
-        <!-- Секция приветствия -->
-        <section class="hero-section">
-            <div class="hero-text">
-                <h1>Добрый вечер, <span class="gradient-text">Александр</span></h1>
-                <p>В вашем доме идеальный баланс: 22°C и свежий воздух. Все системы в норме.</p>
-            </div>
-            <div class="quick-stats">
-                <div class="q-stat">
-                    <span class="q-label">Воздух</span>
-                    <span class="q-value">98% <i data-lucide="arrow-up-right"></i></span>
+        <div id="page-container">
+            <!-- DASHBOARD PAGE -->
+            <section id="dashboard" class="page active">
+                <div class="welcome-block">
+                    <h1>Добрый вечер, <span class="accent-text">Александр</span></h1>
+                    <p class="subtitle">Система Aura оптимизировала климат под ваш приход.</p>
                 </div>
-                <div class="q-stat">
-                    <span class="q-label">Энергия</span>
-                    <span class="q-value">1.2 kW <i data-lucide="zap"></i></span>
-                </div>
-            </div>
-        </section>
 
-        <!-- Сетка виджетов (Bento Grid Style) -->
-        <div class="bento-grid">
-            
-            <!-- Основной график (Большой виджет) -->
-            <div class="bento-item wide glass-card">
-                <div class="card-header">
-                    <h3>Энергопотребление</h3>
-                    <select class="minimal-select">
-                        <option>За неделю</option>
-                        <option>За месяц</option>
-                    </select>
-                </div>
-                <div class="chart-wrapper">
-                    <canvas id="luxuryChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Управление климатом -->
-            <div class="bento-item tall glass-card climate-widget">
-                <h3>Климат</h3>
-                <div class="radial-control">
-                    <div class="temp-circle">
-                        <span class="temp-num" id="temp-val">22</span><span class="temp-unit">°C</span>
+                <div class="stats-row">
+                    <div class="mini-card glass-effect">
+                        <i data-lucide="wind" class="c-blue"></i>
+                        <div class="m-data"><span>Воздух</span><strong>98%</strong></div>
+                    </div>
+                    <div class="mini-card glass-effect">
+                        <i data-lucide="zap" class="c-yellow"></i>
+                        <div class="m-data"><span>Энергия</span><strong>1.2 kW</strong></div>
                     </div>
                 </div>
-                <input type="range" id="temp-slider" min="16" max="30" value="22" class="luxury-slider">
-                <div class="climate-modes">
-                    <button class="mode-btn active">Auto</button>
-                    <button class="mode-btn">Eco</button>
-                    <button class="mode-btn">Heat</button>
-                </div>
-            </div>
 
-            <!-- Список активных устройств -->
-            <div class="bento-item medium glass-card">
-                <div class="card-header">
-                    <h3>Быстрый доступ</h3>
-                    <i data-lucide="more-horizontal"></i>
-                </div>
-                <div id="devices-container" class="luxury-devices">
-                    <!-- Заполняется через JS -->
-                </div>
-            </div>
-
-            <!-- Камеры / Безопасность -->
-            <div class="bento-item medium glass-card camera-preview">
-                <div class="card-header">
-                    <h3>Входная дверь</h3>
-                    <span class="live-tag">Live</span>
-                </div>
-                <div class="video-placeholder">
-                    <div class="overlay-icons">
-                        <i data-lucide="mic"></i>
-                        <i data-lucide="lock"></i>
+                <div class="bento-layout">
+                    <div class="bento-box wide-box glass-effect">
+                        <div class="box-head">
+                            <h3>Энергопотребление</h3>
+                            <select class="os-select"><option>Неделя</option></select>
+                        </div>
+                        <div class="chart-box"><canvas id="luxuryChart"></canvas></div>
                     </div>
-                    <img src="https://unsplash.com" alt="Camera">
-                </div>
-            </div>
+                    
+                    <div class="bento-box tall-box glass-effect climate-control">
+                        <h3>Климат</h3>
+                        <div class="temp-ring">
+                            <div class="temp-display"><span id="temp-val">22</span>°</div>
+                        </div>
+                        <input type="range" id="temp-slider" min="16" max="30" value="22" class="os-range">
+                        <div class="mode-pills">
+                            <button class="pill active">Auto</button>
+                            <button class="pill">Eco</button>
+                            <button class="pill">Heat</button>
+                        </div>
+                    </div>
 
+                    <div class="bento-box glass-effect devices-preview">
+                        <h3>Активные зоны</h3>
+                        <div id="active-zones-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTROL PAGES (Climate, Security, Light) -->
+            <section id="climate" class="page">
+                <h2 class="page-title">Климат-контроль</h2>
+                <div class="premium-grid" id="climate-btns"></div>
+            </section>
+
+            <section id="security" class="page">
+                <h2 class="page-title">Безопасность</h2>
+                <div class="premium-grid" id="security-btns"></div>
+            </section>
+
+            <section id="lighting" class="page">
+                <h2 class="page-title">Освещение</h2>
+                <div class="premium-grid" id="lighting-btns"></div>
+            </section>
         </div>
     </main>
 
-    <!-- Подключаем логику -->
+    <!-- AI ASSISTANT -->
+    <div id="ai-chat" class="ai-panel glass-effect">
+        <div class="ai-head">
+            <div class="ai-info">
+                <div class="ai-avatar">AI</div>
+                <div>
+                    <h4>AURA Assistant</h4>
+                    <small>Online | Ready to help</small>
+                </div>
+            </div>
+            <button onclick="toggleAIChat()" class="close-ai"><i data-lucide="chevron-down"></i></button>
+        </div>
+        <div class="ai-chat-body" id="chat-flow">
+            <div class="msg ai">Привет! Я ваша интеллектуальная система NOLLY AURA. Задайте любой вопрос.</div>
+        </div>
+        <div class="ai-input-zone">
+            <div class="ai-hints" id="ai-hints-box"></div>
+        </div>
+    </div>
+
+    <!-- Теневая кнопка вызова ИИ -->
+    <button class="ai-trigger-btn" onclick="toggleAIChat()">
+        <div class="ai-pulse"></div>
+        <i data-lucide="sparkles"></i>
+    </button>
+
+    <!-- Контейнер для уведомлений -->
+    <div id="toast-wrapper"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
