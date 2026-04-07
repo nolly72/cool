@@ -2,227 +2,47 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NOLLY | Zenith Control Pro</title>
-    
-    <!-- Самый круглый шрифт -->
-    <link href="https://googleapis.com" rel="stylesheet">
-    
-    <!-- Библиотеки -->
-    <script src="https://unpkg.com"></script>
-    <script src="https://jsdelivr.net"></script>
-
-    <style>
-        :root {
-            --bg: #020617;
-            --card: rgba(15, 23, 42, 0.7);
-            --border: rgba(255, 255, 255, 0.08);
-            --accent: #38bdf8;
-            --text: #f8fafc;
-            --text-dim: #94a3b8;
-            --up: #10b981;
-            --down: #f43f5e;
-            --round: 30px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Geologica', sans-serif; }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
-        }
-
-        /* --- БЕСКОНЕЧНЫЙ ТИКЕР --- */
-        .ticker-wrap {
-            width: 100%; overflow: hidden; background: #000;
-            border-bottom: 1px solid var(--border); padding: 14px 0;
-            position: fixed; top: 0; z-index: 2000;
-        }
-        .ticker { display: flex; width: max-content; animation: ticker-move 90s linear infinite; }
-        .ticker__item { padding: 0 40px; font-size: 13px; font-weight: 600; display: flex; gap: 10px; align-items: center; white-space: nowrap; }
-        @keyframes ticker-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* --- LAYOUT --- */
-        .app-container { display: flex; min-height: 100vh; padding-top: 50px; }
-
-        .sidebar {
-            width: 300px; background: var(--card); backdrop-filter: blur(40px);
-            border-right: 1px solid var(--border); padding: 40px 24px;
-            position: sticky; top: 50px; height: calc(100vh - 50px);
-            display: flex; flex-direction: column;
-        }
-
-        .logo { font-size: 32px; font-weight: 800; margin-bottom: 40px; letter-spacing: -2px; }
-        .logo span { color: var(--accent); }
-
-        .nav-link {
-            display: flex; align-items: center; gap: 14px; padding: 18px 22px;
-            color: var(--text-dim); text-decoration: none; border-radius: 22px;
-            margin-bottom: 10px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-        .nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.06); color: #fff; }
-        .nav-link.active { border-left: 6px solid var(--accent); box-shadow: 20px 0 40px rgba(56, 189, 248, 0.1); }
-
-        .main-content { flex: 1; padding: 50px; max-width: 1400px; margin: 0 auto; width: 100%; }
-
-        /* --- CARDS & GRID --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; animation: slideUp 0.6s ease-out; }
-        .card {
-            background: var(--card); border: 1px solid var(--border);
-            padding: 35px; border-radius: var(--round);
-            backdrop-filter: blur(20px); transition: 0.4s;
-        }
-        .card:hover { border-color: var(--accent); transform: translateY(-8px); }
-
-        .big-value { font-size: 48px; font-weight: 800; margin: 15px 0; letter-spacing: -3px; }
-        .status-tag { display: inline-block; padding: 8px 16px; border-radius: 14px; font-size: 12px; font-weight: 800; background: rgba(16, 185, 129, 0.1); color: var(--up); }
-
-        /* --- КНОПКИ --- */
-        .btn-wallet {
-            margin-top: auto; width: 100%; padding: 20px; border-radius: 24px; border: 2px solid var(--accent);
-            background: transparent; color: var(--accent); font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
-        .btn-wallet:hover { background: var(--accent); color: #000; box-shadow: 0 0 40px var(--accent); }
-
-        /* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
-        @media (max-width: 900px) {
-            .sidebar { width: 100%; height: 80px; position: fixed; bottom: 0; top: auto; flex-direction: row; padding: 10px; border-top: 1px solid var(--border); }
-            .logo, .nav-link span, .btn-wallet { display: none; }
-            .nav-link { flex: 1; justify-content: center; margin: 0; }
-            .main-content { padding: 20px; padding-bottom: 120px; }
-            .app-container { padding-top: 60px; }
-        }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .toast { position: fixed; bottom: 30px; right: -500px; background: #fff; color: #000; padding: 20px 40px; border-radius: 25px; font-weight: 900; transition: 0.5s; z-index: 3000; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio 2026 | Next Level</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="cursor"></div> <!-- Трендовый кастомный курсор -->
+    
+    <nav>
+        <div class="logo">FUTURE.</div>
+        <div class="nav-links">
+            <a href="#">Work</a>
+            <a href="#" class="btn-contact">Contact</a>
+        </div>
+    </nav>
 
-    <div class="ticker-wrap"><div class="ticker" id="webticker"></div></div>
+    <main class="container">
+        <header class="hero">
+            <h1>Создаю цифровые <span class="gradient-text">артефакты</span></h1>
+            <p>Дизайн. Код. Интеллект.</p>
+        </header>
 
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="logo">NOLLY<span>.</span></div>
-            <nav class="nav-menu">
-                <div class="nav-link active" onclick="router('dashboard', this)"><i data-lucide="layout-dashboard"></i> <span>Dashboard</span></div>
-                <div class="nav-link" onclick="router('analytics', this)"><i data-lucide="bar-chart-big"></i> <span>Analytics</span></div>
-                <div class="nav-link" onclick="router('appearance', this)"><i data-lucide="palette"></i> <span>Appearance</span></div>
-                <div class="nav-link" onclick="router('security', this)"><i data-lucide="shield-check"></i> <span>Security</span></div>
-            </nav>
-            <button class="btn-wallet" onclick="toast('Connecting MetaMask...')">Connect Wallet</button>
-        </aside>
-
-        <main class="main-content" id="view-port"></main>
-    </div>
-
-    <div id="toast" class="toast">Готово</div>
-
-    <script>
-        // Инициализация иконок
-        lucide.createIcons();
-
-        // 1. БЕГУЩАЯ СТРОКА (Много монет)
-        const coins = [
-            {n:'BTC', p:'68,432', c:'+2.4%'}, {n:'ETH', p:'3,541', c:'+1.8%'}, {n:'SOL', p:'145.2', c:'-0.5%'},
-            {n:'BNB', p:'591.3', c:'+0.2%'}, {n:'ADA', p:'0.45', c:'+4.1%'}, {n:'XRP', p:'0.61', c:'-1.2%'},
-            {n:'DOT', p:'7.21', c:'+0.8%'}, {n:'AVAX', p:'35.4', c:'+2.5%'}, {n:'LINK', p:'18.2', c:'+1.1%'},
-            {n:'NEAR', p:'6.80', c:'+3.4%'}, {n:'MATIC', p:'0.72', c:'-0.3%'}, {n:'LTC', p:'82.15', c:'+1.5%'}
-        ];
-        const ticker = document.getElementById('webticker');
-        ticker.innerHTML = [...coins, ...coins, ...coins].map(c => `
-            <div class="ticker__item">
-                <b style="color:#fff">${c.n}</b> $${c.p} <span style="color:${c.c.includes('+') ? '#10b981':'#f43f5e'}">${c.c}</span>
+        <section class="bento-grid">
+            <div class="card tall interactive">
+                <span>Projects</span>
+                <h2>AI Vision</h2>
             </div>
-        `).join('');
+            <div class="card wide">
+                <span>Experience</span>
+                <p>5 лет в разработке интерфейсов будущего</p>
+            </div>
+            <div class="card small">
+                <span>Tech</span>
+                <div class="icons">JS • GSAP • CSS</div>
+            </div>
+            <div class="card small accent">
+                <h2>100%</h2>
+                <p>Quality</p>
+            </div>
+        </section>
+    </main>
 
-        // 2. ДАННЫЕ СТРАНИЦ
-        const pages = {
-            dashboard: `
-                <div class="page-header"><h1>Dashboard</h1><p>Обзор вашего капитала и живая статистика</p></div>
-                <div class="grid">
-                    <div class="card"><h3>Total Net Worth</h3><div class="big-value">$124,500.00</div><div class="status-tag">↑ +14% Month</div></div>
-                    <div class="card"><h3>Active Trades</h3><div class="big-value">28</div><p>12 ордеров ожидают исполнения</p></div>
-                    <div class="card"><h3>AI Analysis</h3><div id="ai-text" style="color:var(--accent); margin: 15px 0; font-weight:600;">Сканирование трендов...</div>
-                        <div style="height:4px; background:rgba(255,255,255,0.05); border-radius:10px;"><div id="ai-bar" style="width:30%; height:100%; background:var(--accent); transition:1s;"></div></div>
-                    </div>
-                    <div class="card" style="grid-column: 1/-1; height:400px;"><canvas id="mainChart"></canvas></div>
-                </div>
-            `,
-            analytics: `
-                <div class="page-header"><h1>Analytics</h1><p>Глубокая аналитика рынка и ваших рисков</p></div>
-                <div class="grid">
-                    <div class="card"><h3>Market Sentiment</h3><div class="big-value" style="color:#fbbf24">Greed</div><p>Индекс страха и жадности: 74/100</p></div>
-                    <div class="card"><h3>Asset Allocation</h3><p>BTC: 65%</p><p>ETH: 25%</p><p>Others: 10%</p></div>
-                    <div class="card"><h3>Volume 24h</h3><div class="big-value">$3.8B</div><p>Объем торгов вырос на 12.5%</p></div>
-                </div>
-            `,
-            appearance: `
-                <div class="page-header"><h1>Appearance</h1><p>Персонализация вашего Zenith UI</p></div>
-                <div class="grid">
-                    <div class="card"><h3>Color Theme</h3><div style="display:flex; gap:15px; margin-top:20px;">
-                        <div onclick="theme('#38bdf8')" style="width:50px; height:50px; background:#38bdf8; border-radius:50%; cursor:pointer; border:3px solid #fff;"></div>
-                        <div onclick="theme('#10b981')" style="width:50px; height:50px; background:#10b981; border-radius:50%; cursor:pointer;"></div>
-                        <div onclick="theme('#a855f7')" style="width:50px; height:50px; background:#a855f7; border-radius:50%; cursor:pointer;"></div>
-                    </div></div>
-                </div>
-            `,
-            security: `
-                <div class="page-header"><h1>Security</h1><p>Защита ваших активов и данных</p></div>
-                <div class="grid">
-                    <div class="card" style="border-left: 6px solid #10b981;"><h3>Shield Status</h3><div class="big-value" style="color:#10b981">Strong</div><p>2FA & AES-256 активны</p></div>
-                    <div class="card"><h3>Login Audit</h3><p>Сегодня: Moscow, RU</p><p>Вчера: London, UK</p></div>
-                </div>
-            `
-        };
-
-        // 3. РОУТИНГ (ПЕРЕКЛЮЧЕНИЕ)
-        function router(id, el) {
-            document.getElementById('view-port').innerHTML = pages[id];
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            if(el) el.classList.add('active');
-            lucide.createIcons();
-            if(id === 'dashboard') { initChart(); startAI(); }
-            toast(`Page: ${id}`);
-        }
-
-        function initChart() {
-            const ctx = document.getElementById('mainChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{ data:, borderColor: '#38bdf8', tension:0.4, fill:true, backgroundColor:'rgba(56,189,248,0.05)' }]
-                },
-                options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{display:false}, x:{grid:{display:false}}} }
-            });
-        }
-
-        function startAI() {
-            const bar = document.getElementById('ai-bar');
-            const txt = document.getElementById('ai-text');
-            const logs = ["Анализ ордеров...", "Поиск паттернов...", "Zenith: Оптимально", "Сеть стабильна"];
-            let i = 0;
-            setInterval(() => { if(bar) { bar.style.width = Math.random()*100+"%"; txt.innerText = logs[i]; i=(i+1)%logs.length; } }, 3000);
-        }
-
-        function theme(c) {
-            document.documentElement.style.setProperty('--accent', c);
-            toast("Theme Updated");
-            if(document.getElementById('mainChart')) initChart();
-        }
-
-        function toast(m) {
-            const t = document.getElementById('toast');
-            t.innerText = m; t.style.right = '30px';
-            setTimeout(() => t.style.right = '-500px', 3000);
-        }
-
-        // ЗАПУСК
-        router('dashboard');
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
